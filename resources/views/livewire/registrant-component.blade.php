@@ -36,7 +36,7 @@
                     <th>Domisili</th>
                     <th>Program Les</th>
                     <th>No WA</th>
-                    <th>Pesan</th>
+                    <th>Detail</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -49,10 +49,11 @@
                     <td data-name="Domisili">{{ $registrant->city }}</td>
                     <td data-name="Program Les">{{ $registrant->program }}</td>
                     <td data-name="Nomor WA">{{ $registrant->phone }}</td>
-                    <td data-name="Pesan">{{ $registrant->message }}</td>
+                    <td data-name="Detail"><a href="#" title="lihat" data-toggle="modal" data-target="#detailModal" wire:click="detail({{ $registrant->id }})" class="">Lihat</a>
+                    </td>
                     <td>
-                        <a href="#"  title="ubah" data-toggle="modal" data-target="#updateModal" wire:click="edit({{ $registrant->id }})" class="btn btn-outline-success btn-sm btn-block">Terima</a>
-                        <a href="#" title="tolak" data-toggle="modal" data-target="#deleteModal" wire:click="delete({{ $registrant->id }})" class="btn btn-outline-danger btn-sm btn-block">Tolak</a>
+                        <a href="#" title="ubah" data-toggle="modal" data-target="#updateModal" wire:click="edit({{ $registrant->id }})" class="btn btn-outline-success btn-sm btn-w-full">Terima</a>
+                        <a href="#" title="tolak" data-toggle="modal" data-target="#deleteModal" wire:click="delete({{ $registrant->id }})" class="btn btn-outline-danger btn-sm btn-w-full">Tolak</a>
                     </td>
                 </tr>
                 @endforeach

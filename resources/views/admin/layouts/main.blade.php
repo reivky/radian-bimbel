@@ -31,6 +31,10 @@
             .btn-status{
                 width: 50px;
             }
+            .btn-w-full {
+              width: 100%;
+              margin: 2px;
+            }
             #accordionSidebar {
               height: 100%;
               width: 0;
@@ -120,8 +124,11 @@
         body {
           color: rgb(0, 0, 0);
         }
-        .search-form{
+        .search-form {
             width: 160px;
+        }
+        .btn-w-full {
+          width: 70px;
         }
         table {
           width: 100%;
