@@ -56,24 +56,20 @@ class RegistrantComponent extends Component
     public function update()
     {
         if ($this->user_id) {
-            $student = Registrant::find($this->user_id);
-            if ($student) {
-                if ($student->name == $this->name && $student->city == $this->city && $student->phone == $this->phone && $student->study_level == $this->study_level && $student->program == $this->program && $student->lesson == $this->lesson) {
-                    $this->closeModal();
-                    return false;
-                }
-                $validatedDate = $this->validate([
-                    'name' => 'required|max:255',
-                    'city' => 'required:max:100',
-                    'phone' => 'required|max:255',
-                    'program' => 'required',
-                    'study_level' => 'required|max:255',
-                    'lesson' => 'required',
-                ]);
-                $student->update($validatedDate);
-                session()->flash('success', 'Data siswa berhasil diubah');
-                $this->closeModal();
-            }
+            $validatedDate = $this->validate([
+                'name' => 'required|max:255',
+                'city' => 'required|max:100',
+                'phone' => 'required|max:255',
+                'program' => 'required',
+                'date' => 'required',
+                'time' => 'required',
+                'teacher' => 'required',
+                'address' => 'max:255',
+                'etc' => 'max:255',
+            ]);
+            Registrant::create($validatedDate);
+            session()->flash('success', 'Data siswa berhasil diubah');
+            $this->closeModal();
         }
     }
     public function delete($id)
@@ -89,6 +85,17 @@ class RegistrantComponent extends Component
             Registrant::where('id', $this->user_id)->delete();
             session()->flash('success', 'Data pendaftar berhasil ditolak');
             $this->closeModal();
+        }
+    }
+    public function detail($id)
+    {
+        $data = Registrant::where('id', $id)->first();
+        if ($data) {
+            $this->user_id = $id;
+            $this->name = $data->name;
+            $this->phone = $data->phone;
+            $this->city = $data->city;
+            $this->program = $data->program;
         }
     }
     public function updatedsearch()

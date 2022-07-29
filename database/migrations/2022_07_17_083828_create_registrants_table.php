@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('city');
             $table->string('program');
             $table->string('phone');
-            $table->text('message')->nullable();
+            $table->string('message')->nullable();
             $table->timestamps();
         });
     }

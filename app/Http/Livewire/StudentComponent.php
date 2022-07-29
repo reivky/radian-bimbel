@@ -64,7 +64,7 @@ class StudentComponent extends Component
                 }
                 $validatedDate = $this->validate([
                     'name' => 'required|max:255',
-                    'city' => 'required:max:100',
+                    'city' => 'required|max:100',
                     'phone' => 'required|max:255',
                     'program' => 'required',
                     'study_level' => 'required|max:255',

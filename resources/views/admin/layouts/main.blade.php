@@ -119,6 +119,11 @@
               margin: 4px;
             }
         }
+        @media (min-width: 780px) {
+          .btn-w-full {
+            width: 70px;
+          }
+        }
     </style>
     <style>
         body {
@@ -126,9 +131,6 @@
         }
         .search-form {
             width: 160px;
-        }
-        .btn-w-full {
-          width: 70px;
         }
         table {
           width: 100%;
@@ -147,10 +149,13 @@
           padding: 14px;
           border: 0;
           border-bottom: 1px solid #E7E7E7;
+          vertical-align: top;
         }
         tbody th{
             padding-left: 14px;
+            padding-top: 14px;
           border-bottom: 1px solid #E7E7E7;
+          vertical-align: top;
         }
 
         tbody tr:hover {
