@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('city');
             $table->string('program');
-            $table->string('study_level');
+            $table->string('study_level')->nullable();
             $table->text('lesson')->nullable();
             $table->string('phone');
             $table->timestamps();

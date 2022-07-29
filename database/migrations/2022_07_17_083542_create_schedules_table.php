@@ -18,13 +18,15 @@ return new class extends Migration
             $table->string('name');
             $table->string('city');
             $table->string('program');
-            $table->string('study_level');
-            $table->string('student_phone');
-            $table->string('lesson')->nullable();
+            $table->string('phone');
             $table->string('date');
             $table->string('time');
+            $table->string('duration')->nullable();
+            $table->string('study_level')->nullable();
+            $table->text('lesson')->nullable();
             $table->string('teacher');
-            $table->string('teacher_phone');
+            $table->text('address')->nullable();
+            $table->string('etc')->nullable();
             $table->timestamps();
         });
     }

@@ -105,7 +105,7 @@
                         @error('phone') <small class="text-danger">{{ $message }}</small>@enderror
                     </div>
                     <div class="form-group">
-                        <label for="student_totals">Total Siswa Diajar (optional)</label>
+                        <label for="student_totals">Total Siswa Diajar <small class="text-secondary">(optional)</small></label>
                         <input type="number" class="form-control form-control-sm" id="student_totals" placeholder="" wire:model="student_totals">
                         @error('student_totals') <small class="text-danger">{{ $message }}</small>@enderror
                     </div>

@@ -11,7 +11,7 @@ class RegistrantComponent extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $user_id, $name, $phone, $program, $message, $city, $day, $etc, $date, $time, $address, $teacher;
+    public $user_id, $name, $phone, $program, $message, $city, $day, $etc, $date, $time, $address, $teacher, $study_level, $lesson, $duration;
     public $search = null;
     protected $queryString = ['search' => ['except' => '']];
     public $updateMode = false;
@@ -61,8 +61,11 @@ class RegistrantComponent extends Component
                 'city' => 'required|max:100',
                 'phone' => 'required|max:255',
                 'program' => 'required',
+                'study_level' => 'max:255',
+                'lesson' => 'max:255',
                 'date' => 'required',
                 'time' => 'required',
+                'duration' => 'max:20',
                 'teacher' => 'required',
                 'address' => 'max:255',
                 'etc' => 'max:255',

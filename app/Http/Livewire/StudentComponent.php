@@ -30,8 +30,8 @@ class StudentComponent extends Component
             'city' => 'required:max:100',
             'phone' => 'required|max:255',
             'program' => 'required',
-            'study_level' => 'required|max:255',
-            'lesson' => 'required',
+            'study_level' => 'max:255',
+            'lesson' => 'max:255',
         ];
         $validatedDate = $this->validate($rules);
         Student::create($validatedDate);
@@ -67,8 +67,8 @@ class StudentComponent extends Component
                     'city' => 'required|max:100',
                     'phone' => 'required|max:255',
                     'program' => 'required',
-                    'study_level' => 'required|max:255',
-                    'lesson' => 'required',
+                    'study_level' => 'max:255',
+                    'lesson' => 'max:255',
                 ]);
                 $student->update($validatedDate);
                 session()->flash('success', 'Data siswa berhasil diubah');

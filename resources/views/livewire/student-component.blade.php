@@ -33,11 +33,11 @@
             <thead class="text-center">
                 <tr>
                     <th>No</th>
-                    <th>Nama</th>
+                    <th width="15%">Nama</th>
                     <th>Domisili</th>
                     <th>Program Les</th>
                     <th>Jenjang</th>
-                    <th>Mapel</th>
+                    <th width="20%">Mapel</th>
                     <th>No WA</th>
                     <th>Aksi</th>
                 </tr>
@@ -50,8 +50,8 @@
                     <td data-name="Nama">{{ $student->name }}</td>
                     <td data-name="Domisili">{{ $student->city }}</td>
                     <td data-name="Program Les">{{ $student->program }}</td>
-                    <td data-name="Jenjang">{{ $student->study_level }}</td>
-                    <td data-name="Mapel">{{ $student->lesson }}</td>
+                    <td data-name="Jenjang">{{ $student->study_level ? $student->study_level : '-' }}</td>
+                    <td data-name="Mapel">{{ $student->lesson ? $student->lesson : '-'}}</td>
                     <td data-name="No WA">{{ $student->phone }}</td>
                     <td class="action">
                         <a href="#" title="ubah" data-toggle="modal" data-target="#updateModal" wire:click="edit({{ $student->id }})"><i class="far fa-edit"></a></i>&nbsp;
@@ -114,15 +114,15 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="study_level">Jenjang</label>
-                                <input type="text" class="form-control form-control-sm" id="study_level" placeholder="" wire:model="study_level">
+                                <label for="study_level">Jenjang <small class="text-secondary">(optional)</small></label>
+                                <input type="text" class="form-control form-control-sm" id="study_level" placeholder="ex. SMA" wire:model="study_level">
                                 @error('study_level') <small class="text-danger">{{ $message }}</small>@enderror
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="lesson">Mapel</label>
-                        <textarea wire:model="lesson" name="lesson" class="form-control form-control-sm" id="lesson" rows="2"></textarea>
+                        <label for="lesson">Mapel <small class="text-secondary">(optional)</small></label>
+                        <textarea wire:model="lesson" name="lesson" class="form-control form-control-sm" id="lesson" rows="2" placeholder="ex. Matematika"></textarea>
                         @error('lesson') <small class="text-danger">{{ $message }}</small>@enderror
                     </div>
                     <div class="form-group">
@@ -133,7 +133,6 @@
                 </form>
             </div>
             <div class="modal-footer">
-                {{-- <button type="button" wire:click.prevent="cancel()" class="btn btn-secondary btn-sm" data-dismiss="modal">Batal</button> --}}
                 <button type="button" wire:click.prevent="store()" class="btn btn-success btn-block btn-sm close-modal">Simpan</button>
             </div>
         </div>
