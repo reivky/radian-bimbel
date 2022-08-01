@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('program');
             $table->string('phone');
             $table->string('date');
-            $table->string('time');
+            $table->string('time')->nullable();
             $table->string('duration')->nullable();
             $table->string('study_level')->nullable();
             $table->text('lesson')->nullable();

@@ -49,11 +49,10 @@
                     <td data-name="Domisili">{{ $registrant->city }}</td>
                     <td data-name="Program Les">{{ $registrant->program }}</td>
                     <td data-name="Nomor WA">{{ $registrant->phone }}</td>
-                    <td data-name="Pesan">
+                    <td data-name="Pesan" class="message">
                         {{ $registrant->message == null ? '-' : $registrant->message }}
                     </td>
-                    <td>
-                        <a href="#" title="ubah" data-toggle="modal" data-target="#updateModal" wire:click="edit({{ $registrant->id }})" class="btn btn-outline-success btn-w-full btn-sm ">Terima</a>
+                    <td data-name="Aksi" class=""><a href="#" title="terima" data-toggle="modal" data-target="#updateModal" wire:click="edit({{ $registrant->id }})" class="btn btn-outline-success btn-w-full btn-sm ">Terima</a>
                         <a href="#" title="tolak" data-toggle="modal" data-target="#deleteModal" wire:click="delete({{ $registrant->id }})" class="btn btn-outline-danger btn-w-full btn-sm ">Tolak</a>
                     </td>
                 </tr>
@@ -70,118 +69,6 @@
     </div>
 
     {{-- modal terima --}}
-    {{-- <div wire:ignore.self class="modal fade" id="updateModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="color: black">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Atur jadwal Les </h5>
-            <button type="button" wire:click.prevent="cancel()" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="name">Nama</label>
-                                <input type="text" class="form-control form-control-sm" id="name" placeholder="" wire:model="name">
-                                @error('name') <small class="text-danger">{{ $message }}</small>@enderror
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="city">Kota Domisili</label>
-                                <input type="text" class="form-control form-control-sm" id="city" placeholder="" wire:model="city">
-                                @error('city') <small class="text-danger">{{ $message }}</small>@enderror
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="program">Program Les</label>
-                                <select wire:model="program" class="form-control form-control-sm" name="program" id="program">
-                                    <option value="Les Privat Offline">Les Privat Offline</option>
-                                    <option value="Les Privat Online">Les Privat Online</option>
-                                    <option value="Les Kilat Offline">Les Kilat Offline</option>
-                                    <option value="Les Kilat Online">Les Kilat Online</option>
-                                </select>
-                                @error('program') <small class="text-danger">{{ $message }}</small>@enderror
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="phone">Nomor WA</label>
-                                <input type="number" class="form-control form-control-sm" id="phone" placeholder="" wire:model="phone">
-                                @error('phone') <small class="text-danger">{{ $message }}</small>@enderror
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="study_level">Jenjang Pendidikan</label>
-                                <input type="text" wire:model="study_level" name="study_level" class="form-control form-control-sm" id="study_level">
-                                @error('study_level') <small class="text-danger">{{ $message }}</small>@enderror
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="lesson">Mapel</label>
-                                <input type="text" class="form-control form-control-sm" id="lesson" placeholder="" wire:model="lesson">
-                                @error('lesson') <small class="text-danger">{{ $message }}</small>@enderror
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="date">Tanggal Les</label>
-                                <input type="date" wire:model="date" name="date" class="form-control form-control-sm" id="date">
-                                @error('date') <small class="text-danger">{{ $message }}</small>@enderror
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="time">Waktu (WIB)</label>
-                                <input type="time" class="form-control form-control-sm" id="time" placeholder="" wire:model="time">
-                                @error('time') <small class="text-danger">{{ $message }}</small>@enderror
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="teacher">Pengajar</label>
-                        <select wire:model="teacher" name="teacher" id="teacher" class="teacher-select form-control form-control-sm form-select form-select-sm">
-                            @foreach($teachers as $teacher)
-                            <option value="{{ $teacher->name }}">{{ $teacher->name }} - {{ $teacher->city }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="address">Alamat (optional)</label>
-                                <textarea wire:model="address" name="address" class="form-control form-control-sm" id="address" rows="2"></textarea>
-                                @error('address') <small class="text-danger">{{ $message }}</small>@enderror
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="etc">Keterangan lain (optional)</label>
-                                <textarea wire:model="etc" name="etc" class="form-control form-control-sm" id="etc" rows="2"></textarea>
-                                @error('etc') <small class="text-danger">{{ $message }}</small>@enderror
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" wire:click.prevent="update()" class="btn btn-success btn-block btn-sm close-modal">Simpan</button>
-            </div>
-        </div>
-        </div>
-    </div> --}}
     <div wire:ignore.self class="modal fade" id="updateModal" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="color: black">
         <div class="modal-content">
@@ -254,7 +141,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="time">Waktu (WIB)</label>
+                                <label for="time">Waktu (WIB) <small class="text-secondary">(optional)</small></label>
                                 <input type="time" class="form-control form-control-sm" id="time" placeholder="" wire:model="time">
                                 @error('time') <small class="text-danger">{{ $message }}</small>@enderror
                             </div>

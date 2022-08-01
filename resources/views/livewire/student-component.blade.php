@@ -1,72 +1,79 @@
 <div>
-    
-    @if (session()->has('success'))
-    <div class="alert alert-success alert-dismissible small fade show p-2" role="alert">
-        {{ session('success') }}
-        <button type="button" class="close p-1" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    @elseif(session()->has('failed'))
-    <div class="alert alert-danger alert-dismissible small fade show p-2" role="alert">
-        {{ session('failed') }}
-        <button type="button" class="close p-1" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    @endif
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+        <a href="#" data-toggle="modal" data-target="#createModal" wire:click="resetInputFields()" class="btn btn-primary btn-sm">Tambah Data Siswa</a>
+        </div>
+        <div class="card-body">
 
-    <div class="row mb-2 index-search">
-        <div class="col">
-            <select wire:model="paginate" name="pagination" id="pagination" class="form-control form-control-sm form-select-sm w-auto">
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="15">15</option>
-            </select>
-        </div>
-        <div class="col">
-            <input wire:model="search" type="text" class="form-control form-control-sm float-right search-form" placeholder="Cari" name="search">
-        </div>
-    </div>
-    <div class="table-responsive">
-        <table class="" id="" width="100%" cellspacing="0">
-            <thead class="text-center">
-                <tr>
-                    <th>No</th>
-                    <th width="15%">Nama</th>
-                    <th>Domisili</th>
-                    <th>Program Les</th>
-                    <th>Jenjang</th>
-                    <th width="20%">Mapel</th>
-                    <th>No WA</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @if ($students->total())
-                @foreach ($students as $key => $student)
-                <tr>
-                    <th>{{ ($students->currentpage()-1) * $students->perpage() + $loop->iteration }}</th>
-                    <td data-name="Nama">{{ $student->name }}</td>
-                    <td data-name="Domisili">{{ $student->city }}</td>
-                    <td data-name="Program Les">{{ $student->program }}</td>
-                    <td data-name="Jenjang">{{ $student->study_level ? $student->study_level : '-' }}</td>
-                    <td data-name="Mapel">{{ $student->lesson ? $student->lesson : '-'}}</td>
-                    <td data-name="No WA">{{ $student->phone }}</td>
-                    <td class="action">
-                        <a href="#" title="ubah" data-toggle="modal" data-target="#updateModal" wire:click="edit({{ $student->id }})"><i class="far fa-edit"></a></i>&nbsp;
-                        <a href="#" title="hapus" data-toggle="modal" data-target="#deleteModal" wire:click="delete({{ $student->id }})"><i class="fa-regular fa-trash-can"></i></a>
-                    </td>
-                </tr>
-                @endforeach
+            @if (session()->has('success'))
+            <div class="alert alert-success alert-dismissible small fade show p-2" role="alert">
+                {{ session('success') }}
+                <button type="button" class="close p-1" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @elseif(session()->has('failed'))
+            <div class="alert alert-danger alert-dismissible small fade show p-2" role="alert">
+                {{ session('failed') }}
+                <button type="button" class="close p-1" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @endif
+
+            <div class="row mb-2 index-search">
+                <div class="col">
+                    <select wire:model="paginate" name="pagination" id="pagination" class="form-control form-control-sm form-select-sm w-auto">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <input wire:model="search" type="text" class="form-control form-control-sm float-right search-form" placeholder="Cari" name="search">
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="" id="" width="100%" cellspacing="0">
+                    <thead class="text-center">
+                        <tr>
+                            <th>No</th>
+                            <th width="15%">Nama</th>
+                            <th>Domisili</th>
+                            <th>Program Les</th>
+                            <th>Jenjang</th>
+                            <th width="20%">Mapel</th>
+                            <th>No WA</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if ($students->total())
+                        @foreach ($students as $key => $student)
+                        <tr>
+                            <th>{{ ($students->currentpage()-1) * $students->perpage() + $loop->iteration }}</th>
+                            <td data-name="Nama">{{ $student->name }}</td>
+                            <td data-name="Domisili">{{ $student->city }}</td>
+                            <td data-name="Program Les">{{ $student->program }}</td>
+                            <td data-name="Jenjang">{{ $student->study_level ? $student->study_level : '-' }}</td>
+                            <td data-name="Mapel">{{ $student->lesson ? $student->lesson : '-'}}</td>
+                            <td data-name="No WA">{{ $student->phone }}</td>
+                            <td class="action">
+                                <a href="#" title="ubah" data-toggle="modal" data-target="#updateModal" wire:click="edit({{ $student->id }})"><i class="far fa-edit"></a></i>&nbsp;
+                                <a href="#" title="hapus" data-toggle="modal" data-target="#deleteModal" wire:click="delete({{ $student->id }})"><i class="fa-regular fa-trash-can"></i></a>
+                            </td>
+                        </tr>
+                        @endforeach
+                        @endif
+                    </tbody>
+                </table>
+                @if (!$students->total())
+                <div class="text-center mt-2">Data Siswa tidak ditemukan</div>
                 @endif
-            </tbody>
-        </table>
-        @if (!$students->total())
-        <div class="text-center mt-2">Data Siswa tidak ditemukan</div>
-        @endif
-        <div class="mt-2 pagination-table pagination-sm d-flex justify-content-center">
-         {{ $students->onEachSide(0)->links() }}
+                <div class="mt-2 pagination-table pagination-sm d-flex justify-content-center">
+                {{ $students->onEachSide(0)->links() }}
+                </div>
+            </div>
         </div>
     </div>
     

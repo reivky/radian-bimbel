@@ -4,14 +4,16 @@ namespace App\Http\Livewire;
 
 use App\Models\Teacher;
 use Livewire\Component;
+use App\Models\Schedule;
 use App\Models\Registrant;
+use Illuminate\Http\Request;
 use Livewire\WithPagination;
 
 class RegistrantComponent extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $user_id, $name, $phone, $program, $message, $city, $day, $etc, $date, $time, $address, $teacher, $study_level, $lesson, $duration;
+    public $user_id, $name, $phone, $program, $message, $city, $etc, $date, $time, $address, $teacher, $study_level, $lesson, $duration;
     public $search = null;
     protected $queryString = ['search' => ['except' => '']];
     public $updateMode = false;
@@ -26,20 +28,20 @@ class RegistrantComponent extends Component
     }
     public function store()
     {
-        $this->program = !$this->program ? 'Les Privat Offline' : $this->program;
-        $rules = [
-            'name' => 'required|max:255',
-            'city' => 'required:max:100',
-            'phone' => 'required|max:255',
-            'program' => 'required',
-            'study_level' => 'required|max:255',
-            'lesson' => 'required',
-        ];
-        $validatedDate = $this->validate($rules);
-        Registrant::create($validatedDate);
-        session()->flash('success', 'siswa baru berhasil ditambahkan');
-        $this->resetInputFields();
-        $this->emit('userStore'); // Close model to using to jquery
+        // $this->program = !$this->program ? 'Les Privat Offline' : $this->program;
+        // $rules = [
+        //     'name' => 'required|max:255',
+        //     'city' => 'required:max:100',
+        //     'phone' => 'required|max:255',
+        //     'program' => 'required',
+        //     'study_level' => 'required|max:255',
+        //     'lesson' => 'required',
+        // ];
+        // $validatedDate = $this->validate($rules);
+        // Registrant::create($validatedDate);
+        // session()->flash('success', 'siswa baru berhasil ditambahkan');
+        // $this->resetInputFields();
+        // $this->emit('userStore'); // Close model to using to jquery
     }
     public function edit($id)
     {
@@ -55,6 +57,8 @@ class RegistrantComponent extends Component
     }
     public function update()
     {
+        $teacher = Teacher::where('status', 1)->orderBy('name', 'ASC')->first();
+        $this->teacher = $this->teacher ? $this->teacher : $teacher->name;
         if ($this->user_id) {
             $validatedDate = $this->validate([
                 'name' => 'required|max:255',
@@ -64,14 +68,15 @@ class RegistrantComponent extends Component
                 'study_level' => 'max:255',
                 'lesson' => 'max:255',
                 'date' => 'required',
-                'time' => 'required',
+                'time' => 'max:20',
                 'duration' => 'max:20',
                 'teacher' => 'required',
                 'address' => 'max:255',
                 'etc' => 'max:255',
             ]);
-            Registrant::create($validatedDate);
-            session()->flash('success', 'Data siswa berhasil diubah');
+            Schedule::create($validatedDate);
+            Registrant::where('id', $this->user_id)->delete();
+            session()->flash('success', 'Pendaftar berhasil diterima dan jadwal les telah ditambahkan');
             $this->closeModal();
         }
     }
@@ -90,17 +95,6 @@ class RegistrantComponent extends Component
             $this->closeModal();
         }
     }
-    public function detail($id)
-    {
-        $data = Registrant::where('id', $id)->first();
-        if ($data) {
-            $this->user_id = $id;
-            $this->name = $data->name;
-            $this->phone = $data->phone;
-            $this->city = $data->city;
-            $this->program = $data->program;
-        }
-    }
     public function updatedsearch()
     {
         $this->resetPage();
@@ -112,6 +106,14 @@ class RegistrantComponent extends Component
         $this->phone = null;
         $this->program = null;
         $this->message = null;
+        $this->study_level = null;
+        $this->lesson = null;
+        $this->date = null;
+        $this->time = null;
+        $this->duration = null;
+        $this->teacher = null;
+        $this->address = null;
+        $this->etc = null;
     }
     public function cancel()
     {

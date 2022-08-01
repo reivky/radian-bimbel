@@ -32,8 +32,11 @@
                 width: 50px;
             }
             .btn-w-full {
-              width: 100%;
-              margin: 2px;
+              width: 60px;
+              margin-right: 3px;
+              height: 20px;
+              padding-top: 1px;
+              font-size: 12px;
             }
             #accordionSidebar {
               height: 100%;
@@ -66,9 +69,24 @@
                 margin-left: auto;
                 margin-right: auto;
                 /* margin-left: 100px; */
-            }#deleteModal h5 {
+            }
+            #deleteModal h5 {
                 text-align: center;
                 font-size: 15px;
+            }
+            .btn-end{
+              height: 25px;
+              padding-top: 2px;
+              /* padding-bottom: 2px; */
+              vertical-align: center;
+            }
+            .datetime {
+              /* padding-left: 50px; */
+              /* text-indent: 1px; */
+              display: inline;
+            }
+            .baris {
+              text-indent: 80px;
             }
             table thead {
               display: none;
@@ -86,7 +104,9 @@
             }
             table tbody th{
                 padding-left: 2px;
+              padding-top: 0px;
               border-bottom: 0px;
+              padding-bottom: 5px;
             }
 
             table tbody td {
@@ -94,6 +114,8 @@
               font-weight: bold;
                 font-size: 12px;
                 padding-left: 20px;
+              display: inline-block;
+                /* display: table-row; */
             }
 
             table tbody td:before {
@@ -102,12 +124,42 @@
               display: inline-block;
               text-transform: capitalize;
               font-weight: normal;
+              /* display: table-cell; */
+              /* border-spacing: 10px; */
+              /* padding-left: 3px; */
+            }
+
+            table tbody td.message {
+              padding: 2px;
+              font-weight: bold;
+                font-size: 12px;
+                padding-left: 20px;
+                display: table-row;
+            }
+
+            table tbody td.message:before {
+              content: attr(data-name);
+              width: 100px;
+              /* display: inline-block; */
+              text-transform: capitalize;
+              font-weight: normal;
+              display: table-cell;
+              /* border-spacing: 10px; */
+              padding-left: 20px;
+              padding-right: 20px;
             }
 
             table tbody td.action {
               position: absolute;
               top: 4px;
               right: 4px;
+              display: block;
+            }
+            table tbody td.action-end {
+              position: absolute;
+              top: 4px;
+              right: 4px;
+              display: block;
             }
 
             table tbody tr {
@@ -332,6 +384,8 @@
             $('#updateModal').modal('hide');
             $('#createModal').modal('hide');
             $('#deleteModal').modal('hide');
+            $('#detailModal').modal('hide');
+            $('#scheduleEndModal').modal('hide');
         });
     </script>
 </body>

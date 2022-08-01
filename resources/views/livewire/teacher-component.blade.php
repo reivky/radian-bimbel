@@ -1,81 +1,86 @@
 <div>
-
-    @if (session()->has('success'))
-    <div class="alert alert-success alert-dismissible small fade show p-2" role="alert">
-        {{ session('success') }}
-        <button type="button" class="close p-1" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    @elseif(session()->has('failed'))
-    <div class="alert alert-danger alert-dismissible small fade show p-2" role="alert">
-        {{ session('failed') }}
-        <button type="button" class="close p-1" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    @endif
-
-    <div class="row mb-2 index-search">
-        <div class="col">
-            <select wire:model="paginate" name="pagination" id="pagination" class="form-control form-control-sm form-select-sm w-auto">
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="15">15</option>
-            </select>
+        <div class="card-header py-3">
+            <a href="#" data-toggle="modal" data-target="#createModal" wire:click="resetInputFields()" class="btn btn-primary btn-sm">Tambah Data Pengajar</a>
         </div>
-        <div class="col">
-            <input wire:model="search" type="text" class="form-control form-control-sm float-right search-form" placeholder="Cari" name="search">
-        </div>
-    </div>
-    <div class="table-responsive">
-        <table class="" id="" width="100%" cellspacing="0">
-            <thead class="text-center">
-                <tr>
-                    <th>No</th>
-                    <th>Nama</th>
-                    <th>Domisili</th>
-                    <th>No WA</th>
-                    <th>Total Siswa</th>
-                    <th>Status</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @if ($teachers->total()) 
-                @foreach ($teachers as $teacher)
-                <tr>
-                    <th>{{ ($teachers->currentpage()-1) * $teachers->perpage() + $loop->iteration }}</th>
-                    <td data-name="Nama">{{ $teacher->name }}</td>
-                    <td data-name="Domisili">{{ $teacher->city }}</td>
-                    <td data-name="Nomor WA">{{ $teacher->phone }}</td>
-                    <td data-name="Total Siswa">{{ $teacher->student_totals }}</td>
-                    <td data-name="Status">
-                        @if ($teacher->status == 0)
-                        <button type="button" class="btn-status badge bg-danger btn-block text-white border-0">Berhenti</button>
-                        @elseif($teacher->status == 2)
-                        <button type="button" class="btn-status badge bg-secondary btn-block text-white border-0">Libur</button>
-                        @else
-                        <button type="button" class="btn-status badge bg-success btn-block text-white border-0">Aktif</button>
+        <div class="card-body">
+
+            @if (session()->has('success'))
+            <div class="alert alert-success alert-dismissible small fade show p-2" role="alert">
+                {{ session('success') }}
+                <button type="button" class="close p-1" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @elseif(session()->has('failed'))
+            <div class="alert alert-danger alert-dismissible small fade show p-2" role="alert">
+                {{ session('failed') }}
+                <button type="button" class="close p-1" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @endif
+
+            <div class="row mb-2 index-search">
+                <div class="col">
+                    <select wire:model="paginate" name="pagination" id="pagination" class="form-control form-control-sm form-select-sm w-auto">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <input wire:model="search" type="text" class="form-control form-control-sm float-right search-form" placeholder="Cari" name="search">
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="" id="" width="100%" cellspacing="0">
+                    <thead class="text-center">
+                        <tr>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>Domisili</th>
+                            <th>No WA</th>
+                            <th>Total Siswa</th>
+                            <th>Status</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if ($teachers->total()) 
+                        @foreach ($teachers as $teacher)
+                        <tr>
+                            <th>{{ ($teachers->currentpage()-1) * $teachers->perpage() + $loop->iteration }}</th>
+                            <td data-name="Nama">{{ $teacher->name }}</td>
+                            <td data-name="Domisili">{{ $teacher->city }}</td>
+                            <td data-name="Nomor WA">{{ $teacher->phone }}</td>
+                            <td data-name="Total Siswa">{{ $teacher->student_totals }}</td>
+                            <td data-name="Status">
+                                @if ($teacher->status == 0)
+                                <button type="button" class="btn-status badge bg-danger btn-block text-white border-0">Berhenti</button>
+                                @elseif($teacher->status == 2)
+                                <button type="button" class="btn-status badge bg-secondary btn-block text-white border-0">Libur</button>
+                                @else
+                                <button type="button" class="btn-status badge bg-success btn-block text-white border-0">Aktif</button>
+                                @endif
+                            </td>
+                            <td class="action">
+                                <a href="#" title="ubah" data-toggle="modal" data-target="#updateModal" wire:click="edit({{ $teacher->id }})"><i class="far fa-edit"></a></i>&nbsp;
+                                <a href="#" title="hapus" data-toggle="modal" data-target="#deleteModal" wire:click="delete({{ $teacher->id }})"><i class="fa-regular fa-trash-can"></i></a>
+                            </td>
+                        </tr>
+                        @endforeach
                         @endif
-                    </td>
-                    <td class="action">
-                        <a href="#" title="ubah" data-toggle="modal" data-target="#updateModal" wire:click="edit({{ $teacher->id }})"><i class="far fa-edit"></a></i>&nbsp;
-                        <a href="#" title="hapus" data-toggle="modal" data-target="#deleteModal" wire:click="delete({{ $teacher->id }})"><i class="fa-regular fa-trash-can"></i></a>
-                    </td>
-                </tr>
-                @endforeach
+                    </tbody>
+                </table>
+                @if (!$teachers->total())
+                <div class="text-center mt-2">Data Pengajar tidak ditemukan</div>
                 @endif
-            </tbody>
-        </table>
-        @if (!$teachers->total())
-        <div class="text-center mt-2">Data Pengajar tidak ditemukan</div>
-        @endif
-        <div class="mt-2 pagination-table pagination-sm d-flex justify-content-center">
-         {{ $teachers->onEachSide(0)->links() }}
-        </div>
-    </div>
+                <div class="mt-2 pagination-table pagination-sm d-flex justify-content-center">
+                {{ $teachers->onEachSide(0)->links() }}
+                </div>
+            </div>
     
+        </div>
     
     {{-- modal tambah --}}
     <div wire:ignore.self class="modal fade" id="createModal" tabindex="-1" role="dialog">
