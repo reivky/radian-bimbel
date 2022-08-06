@@ -34,6 +34,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/schedules', function () {
         return view('admin.schedules.index');
     });
+    Route::get('/profile', function () {
+        return view('admin.profile.index');
+    });
 });
 
 require __DIR__ . '/auth.php';

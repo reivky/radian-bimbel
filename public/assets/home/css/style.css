@@ -1153,11 +1153,24 @@ section {
   color: #fff;
 }
 .contact .php-email-form {
-  width: 100%;
-  border-top: 3px solid #6599ff;
-  border-bottom: 3px solid #6599ff;
+  
+  width: 80%;
+  /* border-top: 3px solid #6599ff;
+  border-bottom: 3px solid #6599ff; */
   padding: 30px;
   background-color: #f9f9fa;
+}
+@media (max-width: 480px) {
+  .contact .php-email-form {
+  
+    width: 100%;
+  }
+  .contact .php-email-form .alert { 
+    font-size: 12px;
+  }
+  .contact .php-email-form input, .contact .php-email-form textarea {
+    font-size: 10px;
+  }
 }
 .contact .php-email-form .form-group {
   padding-bottom: 8px;
@@ -1202,14 +1215,14 @@ section {
 .contact .php-email-form input, .contact .php-email-form textarea {
   border-radius: 0;
   box-shadow: none;
-  font-size: 14px;
+  font-size: 15px;
   border-radius: 4px;
 }
 .contact .php-email-form input:focus, .contact .php-email-form textarea:focus {
   border-color: #6599ff;
 }
 .contact .php-email-form input {
-  height: 44px;
+  height: 30px;
 }
 .contact .php-email-form textarea {
   padding: 10px 12px;
