@@ -13,22 +13,18 @@
     <link rel="canonical" href="https://radianbimbel.com/">
     <meta name="google-site-verification" content="sKQbWmyjWYuWKmbhnOQR4CajS7i1blXodtaECnga6Nc">
     
-    {{-- <meta property="og:locale" content="en_US">
-    <meta property="og:site_name" content="Radian Bimbel - Layanan Les Privat Datang Ke Rumah">
-    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://radianbimbel.com/">
+    <meta property="og:type" content="website">
     <meta property="og:title" content="Radian Bimbel - Layanan Les Privat Datang Ke Rumah">
     <meta property="og:description" content="Radian Bimbel Menyediakan jasa les privat dengan tentor yang profesional datang ke rumah untuk TK, SD, SMP, SMA, International School, UTBK, OSN, dan Kedinasan">
-    <meta property="og:url" content="https://radianbimbel.com/">
     <meta property="og:image" content="https://radianbimbel.com/assets/img/hero-img.png">
-    <meta property="og:image:secure_url" content="https://radianbimbel.com/assets/img/hero-img.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="450">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:site" content="@radianbimbel">
-    <meta name="twitter:title" content="Radian Bimbel - Layanan Les Privat Datang Ke Rumah">
-    <meta name="twitter:description" content="Radian Bimbel Menyediakan jasa les privat dengan tentor yang profesional datang ke rumah untuk TK, SD, SMP, SMA, International School, UTBK, OSN, dan Kedinasan">
-    <meta name="twitter:creator" content="@radianbimbel">
-    <meta name="twitter:image" content="https://radianbimbel.com/assets/img/logo.png"> --}}
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@radianbimbel" />
+    <meta name="twitter:title" content="Radian Bimbel - Layanan Les Privat Datang Ke Rumah" />
+    <meta name="twitter:description" content="Radian Bimbel Menyediakan jasa les privat dengan tentor yang profesional datang ke rumah untuk TK, SD, SMP, SMA, International School, UTBK, OSN, dan Kedinasan" />
+    <meta name="twitter:image" content="https://radianbimbel.com/assets/img/logo.png" />
+
 
   <!-- Favicons -->
   <link href="/assets/home/img/favicon.png" rel="icon">

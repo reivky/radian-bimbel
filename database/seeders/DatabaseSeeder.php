@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use App\Models\Student;
 use App\Models\Teacher;
+use App\Models\Components;
 use App\Models\Registrant;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;

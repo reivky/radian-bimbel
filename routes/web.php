@@ -28,14 +28,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/students', function () {
         return view('admin.students.index');
     });
-    Route::get('/registrants', function () {
-        return view('admin.registrants.index');
-    });
+    // Route::get('/registrants', function () {
+    //     return view('admin.registrants.index');
+    // });
     Route::get('/schedules', function () {
         return view('admin.schedules.index');
     });
     Route::get('/profile', function () {
         return view('admin.profile.index');
+    });
+    Route::get('/components', function () {
+        return view('admin.components.index');
     });
 });
 

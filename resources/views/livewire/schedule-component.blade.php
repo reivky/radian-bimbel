@@ -42,7 +42,7 @@
                             <th>Program Les</th>
                             <th>Pengajar</th>
                             <th>Pelaksanaan</th>
-                            <th>Detail</th>
+                            <th>Lainnya</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -60,7 +60,7 @@
                                 <div class="baris">{{ $schedule->time?$schedule->time.' WIB':'' }} </div>
                                 <div class="baris">{{ $schedule->duration }}</div>
                             </td>
-                            <td data-name="Detail"><a href="#">Lihat</a>
+                            <td data-name="Lainnya"><a data-toggle="modal" data-target="#detailModal" wire:click.prevent="detailSchedule({{ $schedule->id }})" href="#">Lihat</a>
                             </td>
                             <td class="action-end">
                                 <a href="#" title="selesaikan" data-toggle="modal" data-target="#scheduleEndModal" wire:click="scheduleEnd({{ $schedule->id }})" class="btn btn-success btn-sm btn-end mr-2">selesaikan</a>
@@ -358,6 +358,48 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    {{-- modal detail --}}
+    <div wire:ignore.self class="modal fade" id="detailModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="color: black">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Info Lainnya</h5>
+            <button type="button" wire:click.prevent="cancel()" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <table class="table-bordered table-detail" style=" width: 100%; color: black; ">
+                    @if ($this->user_id)
+                        <tr>
+                            <th width="200px">Jenjang Pendidikan</th>
+                            <td>{{ $this->study_level?$this->study_level:'-' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Mata Pelajaran</th>
+                            <td>{{ $this->lesson?$this->lesson:'-' }}</td>
+                        </tr>
+                        <tr>
+                            <th>No WhatsApp</th>
+                            <td>{{ $this->phone?$this->phone:'-' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Alamat</th>
+                            <td>{{ $this->address?$this->address:'-' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Keterangan Lain</th>
+                            <td>{{ $this->etc?$this->etc:'-' }}</td>
+                        </tr>
+                    @endif
+                </table>
+            </div>
+            <div class="modal-footer">
+                    <button type="button" wire:click.prevent="cancel()" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
         </div>
     </div>
 

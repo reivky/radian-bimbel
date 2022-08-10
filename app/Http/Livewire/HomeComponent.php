@@ -2,8 +2,11 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Registrant;
 use Livewire\Component;
+use App\Models\Components;
+use App\Models\Gallery;
+use App\Models\Registrant;
+use App\Models\Testimonial;
 
 class HomeComponent extends Component
 {
@@ -14,7 +17,13 @@ class HomeComponent extends Component
 
     public function render()
     {
-        return view('livewire.home-component');
+        return view('livewire.home-component', [
+            'tagline' => Components::where('type', 'tagline')->first(),
+            'about' => Components::where('type', 'about')->first(),
+            'area' => Components::where('type', 'area')->first(),
+            'galleries' => Gallery::all(),
+            'testimonials' => Testimonial::all(),
+        ]);
     }
     public function store()
     {

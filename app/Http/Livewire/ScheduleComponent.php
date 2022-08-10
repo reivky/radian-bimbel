@@ -110,6 +110,25 @@ class ScheduleComponent extends Component
             }
         }
     }
+    public function detailSchedule($id)
+    {
+        $data = Schedule::where('id', $id)->first();
+        if ($data) {
+            $this->user_id = $id;
+            $this->name = $data->name;
+            $this->city = $data->city;
+            $this->phone = $data->phone;
+            $this->program = $data->program;
+            $this->study_level = $data->study_level;
+            $this->lesson = $data->lesson;
+            $this->date = $data->date;
+            $this->time = $data->time;
+            $this->duration = $data->duration;
+            $this->teacher = $data->teacher;
+            $this->address = $data->address;
+            $this->etc = $data->etc;
+        }
+    }
     public function scheduleEnd($id)
     {
         $data = Schedule::where('id', $id)->first();

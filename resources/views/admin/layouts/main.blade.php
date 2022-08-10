@@ -24,7 +24,14 @@
     <link href="/assets/admin/css/sb-admin-2.min.css" rel="stylesheet">
     <style>
         @media (max-width: 480px) {
-
+          
+            .table-detail {
+              font-size: 12px;
+            }
+            
+            .table-detail tr th:first-child {
+              width: 120px;
+            }
             .h3{
                 font-size: 20px;
             }
@@ -61,6 +68,10 @@
                 padding-right: 8px;
                 padding-bottom: 0px;
             }
+            .image-form{
+              padding-left: 8px;
+                padding-right: 8px;
+            }
             .index-search select option {
                 font-size: 10px;
             }
@@ -88,28 +99,28 @@
             .baris {
               text-indent: 80px;
             }
-            table thead {
+            .table-responsive table thead {
               display: none;
             }
 
-            table tbody {
+            .table-responsive table tbody {
               display: flex;
               flex-wrap: wrap;
               padding: 4px;
             }
 
-            table tbody tr, table tbody td {
+            .table-responsive table tbody tr, .table-responsive table tbody td {
               display: block;
               border: 0px;
             }
-            table tbody th{
+            .table-responsive table tbody th{
                 padding-left: 2px;
               padding-top: 0px;
               border-bottom: 0px;
               padding-bottom: 5px;
             }
 
-            table tbody td {
+            .table-responsive table tbody td {
               padding: 2px;
               font-weight: bold;
                 font-size: 12px;
@@ -118,7 +129,15 @@
                 /* display: table-row; */
             }
 
-            table tbody td:before {
+            .table-responsive .gambar tbody td {
+              padding: 2px;
+              font-weight: normal;
+                font-size: 12px;
+                padding-left: 20px;
+              display: block;
+            }
+
+            .table-responsive table tbody td:before {
               content: attr(data-name);
               width: 80px;
               display: inline-block;
@@ -128,8 +147,18 @@
               /* border-spacing: 10px; */
               /* padding-left: 3px; */
             }
+            .table-responsive .gambar tbody td:before {
+              content: none;
+              width: 0px;
+              display: inline-block;
+              text-transform: capitalize;
+              font-weight: normal;
+              /* display: table-cell; */
+              /* border-spacing: 10px; */
+              /* padding-left: 3px; */
+            }
 
-            table tbody td.message {
+            .table-responsive table tbody td.message {
               padding: 2px;
               font-weight: bold;
                 font-size: 12px;
@@ -137,7 +166,7 @@
                 display: table-row;
             }
 
-            table tbody td.message:before {
+            .table-responsive table tbody td.message:before {
               content: attr(data-name);
               width: 100px;
               /* display: inline-block; */
@@ -149,20 +178,20 @@
               padding-right: 20px;
             }
 
-            table tbody td.action {
+            .table-responsive table tbody td.action {
               position: absolute;
               top: 4px;
               right: 4px;
               display: block;
             }
-            table tbody td.action-end {
+            .table-responsive table tbody td.action-end {
               position: absolute;
               top: 4px;
               right: 4px;
               display: block;
             }
 
-            table tbody tr {
+            .table-responsive table tbody tr {
               position: relative;
               /*width: calc(50% - 8px);*/
               width: 100%;
@@ -178,49 +207,53 @@
         }
     </style>
     <style>
+        .table-detail tr th, .table-detail tr td{
+          padding: 5px;
+          vertical-align: top;
+        }
         body {
           color: rgb(0, 0, 0);
         }
         .search-form {
             width: 160px;
         }
-        table {
+        .table-responsive table {
           width: 100%;
           border-spacing: 0;
           background-color: #FFFFFF;
           font-size: 14px;
         }
 
-        thead th {
+        .table-responsive table thead th {
           color: #7A7A7A;
           text-align: left;
           background-color: #F9FAFC;
         }
 
-        thead th, tbody td {
+        .table-responsive thead th, .table-responsive tbody td {
           padding: 14px;
           border: 0;
           border-bottom: 1px solid #E7E7E7;
           vertical-align: top;
         }
-        tbody th{
+        .table-responsive tbody th{
             padding-left: 14px;
             padding-top: 14px;
           border-bottom: 1px solid #E7E7E7;
           vertical-align: top;
         }
 
-        tbody tr:hover {
+        .table-responsive tbody tr:hover {
           background-color: #F7F9FC;
         }
 
-        td.action {
+        .table-responsive td.action {
           text-align: center;
         }
-        tbody .action{
+        .table-responsive tbody .action{
             text-align: left;
         }
-        tbody .td-center{
+        .table-responsive tbody .td-center{
             text-align: center;
         }
     </style>
@@ -388,6 +421,12 @@
             $('#scheduleEndModal').modal('hide');
         });
     </script>
+    <script type="application/javascript">
+      $('input[type="file"]').change(function(e){
+          var fileName = e.target.files[0].name;
+          $('.custom-file-label').html(fileName);
+      });
+  </script>
 </body>
 
 </html>

@@ -19,14 +19,14 @@
     <form class="mb-4">
         <div class="form-group">
             <label for="name">Nama</label>
-            <input type="text" class="form-control form-control-sm" id="name" name="name" wire:model="name">
+            <input type="text" class="form-control form-control-sm @error('name') is-invalid @enderror" id="name" name="name" wire:model="name">
             @error('name')
                 <small class="text-danger">{{ $message }}</small>
             @enderror
         </div>
         <div class="form-group">
             <label for="email">Email</label>
-            <input wire:model="email" type="email" class="form-control form-control-sm" id="email" name="email">
+            <input wire:model="email" type="email" class="form-control form-control-sm @error('email') is-invalid @enderror" id="email" name="email">
             @error('email')
             <small class="text-danger">{{ $message }}</small>
             @enderror
@@ -39,19 +39,16 @@
     <form class="mt-3 mb-3">
         <div class="form-group">
             <label for="old_password">Password lama</label>
-            <input wire:model="old_password" type="password" class="form-control form-control-sm" id="old_password" name="old_password">
+            <input wire:model="old_password" type="password" class="form-control form-control-sm @error('old_password') is-invalid @enderror" id="old_password" name="old_password">
             @error('old_password')
                 <small class="text-danger">{{ $message }}</small>
             @enderror
-            @if (session()->has('password_not_match'))
-                <small class="text-danger"> {{ session('password_not_match') }}</small>
-            @endif
         </div>
         <div class="row">
             <div class="col">
                 <div class="form-group">
                     <label for="password">Password baru</label>
-                    <input wire:model="password" type="password" class="form-control form-control-sm" id="password" name="password">
+                    <input wire:model="password" type="password" class="form-control form-control-sm @error('password') is-invalid @enderror" id="password" name="password">
                     @error('password')
                     <small class="text-danger"> {{ $message }}</small>
                     @enderror
@@ -60,7 +57,7 @@
             <div class="col">
                 <div class="form-group">
                     <label for="password_confirmation">Konfirmasi password baru</label>
-                    <input wire:model="password_confirmation" type="password" class="form-control form-control-sm" id="password_confirmation" name="password_confirmation">
+                    <input wire:model="password_confirmation" type="password" class="form-control form-control-sm @error('password_confirmation') is-invalid @enderror" id="password_confirmation" name="password_confirmation">
                     @error('password_confirmation')
                     <small class="text-danger"> {{ $message }}</small>
                     @enderror

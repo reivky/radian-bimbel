@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('components', function (Blueprint $table) {
             $table->id();
-            $table->text('tagline');
-            $table->text('about');
+            $table->text('content');
+            $table->string('type');
             $table->timestamps();
         });
     }

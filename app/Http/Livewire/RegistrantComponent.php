@@ -74,8 +74,10 @@ class RegistrantComponent extends Component
                 'address' => 'max:255',
                 'etc' => 'max:255',
             ]);
-            Schedule::create($validatedDate);
-            Registrant::where('id', $this->user_id)->delete();
+            $new_schedule = Schedule::create($validatedDate);
+            $accept = Registrant::where('id', $this->user_id)->delete();
+            $this->emit('declineRegistrant', $accept);
+            $this->emit('newSchedule', $new_schedule);
             session()->flash('success', 'Pendaftar berhasil diterima dan jadwal les telah ditambahkan');
             $this->closeModal();
         }
@@ -90,8 +92,9 @@ class RegistrantComponent extends Component
     public function destroy()
     {
         if ($this->user_id) {
-            Registrant::where('id', $this->user_id)->delete();
+            $decline = Registrant::where('id', $this->user_id)->delete();
             session()->flash('success', 'Data pendaftar berhasil ditolak');
+            $this->emit('declineRegistrant', $decline);
             $this->closeModal();
         }
     }

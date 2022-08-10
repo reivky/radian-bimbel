@@ -157,9 +157,14 @@
                     <div class="form-group">
                         <label for="teacher">Pengajar</label>
                         <select wire:model="teacher" name="teacher" id="teacher" class="teacher-select form-control form-control-sm form-select form-select-sm">
+                            @if ($teachers)
                             @foreach($teachers as $teacher)
                             <option value="{{ $teacher->name }}">{{ $teacher->name }} - {{ $teacher->city }}</option>
                             @endforeach
+                            @else
+                            <option value="-">Tidak ada pengajar</option>
+                            @endif
+                            
                         </select>
                     </div>
                     <div class="row">

@@ -7,11 +7,21 @@
       <div class="row">
         <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
           <h1>Selamat Datang!</h1>
-          <!-- <h2>Pilihan yang cerdas sebagai pendamping studi anda</h2> -->
-          <h2 class="tag-line">Layanan Les Privat Terpercaya<br>
-          Tentor Terbaik Datang Ke Rumah</h2>
-          <h2 class="area-tag">AREA : Semarang, Kudus, Demak, Jepara</h2>
-          <!-- <h3>Radian Bimbel adalah Solusi Bimbingan Belajar di Rumah dengan Tentor Profesional. Memberikan jaminan kecocokan Tentor atau pendamping belajar.</h3> -->
+          @if($tagline)
+          <h2 class="tag-line">
+            {{ $tagline->content }}
+          </h2>
+          @else
+            <h2 class="tag-line">Layanan Les Privat Terpercaya<br>
+            Tentor Terbaik Datang Ke Rumah</h2>
+          @endif
+          <h2 class="area-tag">AREA : 
+            @if($area)
+              {{ $area->content }}
+            @else
+            Semarang, Demak, Kudus, Jepara
+            @endif
+          </h2>
           <div class="d-flex">
             <a href="#about" class="btn-get-started scrollto">Tentang Kami</a>
           </div>
@@ -38,7 +48,11 @@
           <div class="col-lg-6 pt-4 pt-lg-0 content">
             <h3>Profil Radian Bimbel</h3>
             <p class="">
+              @if($about)
+              {{ $about->content }}
+              @else
               Radian Bimbel adalah sebuah lembaga pendidikan yang berfokus pada bimbingan belajar di rumah atau les privat dengan tentor yang profesional. Kami akan memberikan jaminan kecocokan antara tentor atau pendamping belajar dengan anda.
+              @endif
             </p>
             <p>Melayani semua jenjang :</p>
             <div class="row">
@@ -77,52 +91,15 @@
 
         <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
           <div class="swiper-wrapper">
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img style="width: 100%" src="/assets/home/img/portfolio/portofolio-1.png">
+            @if ($galleries)
+              @foreach ($galleries as $gallery)
+              <div class="swiper-slide">
+                <div class="testimonial-item">
+                  <img style="width: 100%" src="/storage/gallery/{{ $gallery->img_gallery }}">
+                </div>
               </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img style="width: 100%" src="/assets/home/img/portfolio/portofolio-2.png">
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img style="width: 100%" src="/assets/home/img/portfolio/portofolio-3.png">
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img style="width: 100%" src="/assets/home/img/portfolio/portofolio-4.png">
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img style="width: 100%" src="/assets/home/img/portfolio/portofolio-5.png">
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img style="width: 100%" src="/assets/home/img/portfolio/portofolio-6.png">
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img style="width: 100%" src="/assets/home/img/portfolio/portofolio-7.png">
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img style="width: 100%" src="/assets/home/img/portfolio/portofolio-8.png">
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img style="width: 100%" src="/assets/home/img/portfolio/portofolio-9.png">
-              </div>
-            </div>
+              @endforeach
+            @endif
           </div>
           <div class="swiper-pagination"></div>
         </div>
@@ -320,10 +297,19 @@
           <div class="col-md-3 les-online border-kanan" style="">
               <h4>LES PRIVAT OFFLINE<br>TENTOR DATANG KE RUMAH</h4>
               <ul class="area-les-offline">
+                @if ($area)
+                <?php 
+                  $areas = explode(',',$area->content);
+                ?>
+                @foreach ($areas as $v)
+                <li><i class="bi bi-geo-alt-fill"></i> {{ $v }}</li>
+                @endforeach
+                @else
                 <li><i class="bi bi-geo-alt-fill"></i> Semarang</li>
                 <li><i class="bi bi-geo-alt-fill"></i> Kudus</li>
                 <li><i class="bi bi-geo-alt-fill"></i> Demak</li>
                 <li><i class="bi bi-geo-alt-fill"></i> Jepara</li>
+                @endif
               </ul>
           </div>
           <div class="col-md-3 border-kiri">
@@ -352,21 +338,15 @@
         <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
           <div class="swiper-wrapper">
 
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img style="width: 100%" src="/assets/home/img/testimonials/testimonials-1.png">
+            @if ($testimonials)
+              @foreach ($testimonials as $testimoni)
+              <div class="swiper-slide">
+                <div class="testimonial-item">
+                  <img style="width: 100%" src="/storage/testimonial/{{ $testimoni->img_testimonial }}">
+                </div>
               </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img style="width: 100%" src="/assets/home/img/testimonials/testimonials-2.png">
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img style="width: 100%" src="/assets/home/img/testimonials/testimonials-3.png">
-              </div>
-            </div>
+              @endforeach
+            @endif
 
           </div>
           <div class="swiper-pagination"></div>

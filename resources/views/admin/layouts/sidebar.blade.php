@@ -144,12 +144,6 @@
             <i class="fa-solid fa-list"></i>
             <span>Data Siswa</span></a>
     </li>
-    <!-- Nav Item - Data Pendaftar -->
-    <li class="nav-item {{ Request::is('registrants*') ? 'active' : '' }}">
-        <a class="nav-link" href="/registrants">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Pendaftar Baru</span></a>
-    </li>
     <li class="nav-item {{ Request::is('schedules*') ? 'active' : '' }}">
         <a class="nav-link" href="/schedules">
             <i class="fas fa-fw fa-graduation-cap"></i>
